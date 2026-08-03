@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Picarello — Personal Training & Health and Wellness Coaching</title>
+<link rel="icon" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          negro: '#1F1C1B',
+          onyx: '#0A0A0A',
+          charcoal: '#1C1C1C',
+          offwhite: '#F7F6F0',
+          ivory: '#F4F1EA',
+          blanco: '#FFFFFF',
+          gold: '#D1A45A',
+          'gold-light': '#E4C388',
+          bronze: '#BC8D46',
+          champagne: '#FFF29E',
+          'gris-600': '#585858',
+          'gris-500': '#888888',
+          'gris-400': '#A0A0A0',
+          'gris-300': '#C4C4C4',
+          'gris-200': '#E3E3E3',
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  :root{
+    --step-0: clamp(.875rem, .787rem + .38vw, 1.125rem);
+    --step-1: clamp(1rem, .912rem + .38vw, 1.25rem);
+    --step-2: clamp(1.125rem, 1.037rem + .38vw, 1.375rem);
+    --step-3: clamp(1.25rem, 1.162rem + .38vw, 1.5rem);
+    --step-4: clamp(1.5rem, 1.324rem + .75vw, 2rem);
+    --step-5: clamp(2.25rem, 1.85rem + 2vw, 3.5rem);
+    --step-6: clamp(2.75rem, 2rem + 3.5vw, 5rem);
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #1F1C1B;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+    overflow-x: clip;
+  }
+  .font-display{ font-family: 'Cormorant Garamond', serif; }
+  .tracked{ letter-spacing: 0.14em; }
+  .shadow-gold{
+    box-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -8px rgba(209,164,90,.35), 0 24px 48px -24px rgba(0,0,0,.6);
+  }
+  .shadow-card{
+    box-shadow: 0 1px 1px rgba(0,0,0,.03), 0 4px 12px -4px rgba(31,28,27,.08), 0 16px 32px -16px rgba(31,28,27,.06);
+  }
+  .shadow-card-dark{
+    box-shadow: 0 1px 1px rgba(0,0,0,.5), 0 8px 24px -8px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
+  }
+  .btn-primary{
+    background: linear-gradient(180deg, #E4C388 0%, #D1A45A 60%, #BC8D46 100%);
+    color: #1C1600;
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 1px 2px rgba(0,0,0,.3), 0 10px 24px -8px rgba(209,164,90,.55);
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 1px 2px rgba(0,0,0,.3), 0 16px 32px -8px rgba(209,164,90,.7); }
+  .btn-primary:active{ transform: translateY(0); }
+  .btn-primary:focus-visible{ outline: 2px solid #E4C388; outline-offset: 3px; }
+
+  .btn-outline{
+    border: 1px solid rgba(209,164,90,.5);
+    color: #F7F6F0;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), background-color .35s cubic-bezier(.16,1,.3,1), border-color .35s cubic-bezier(.16,1,.3,1);
+  }
+  .btn-outline:hover{ background: rgba(209,164,90,.1); border-color: #D1A45A; transform: translateY(-2px); }
+  .btn-outline:focus-visible{ outline: 2px solid #D1A45A; outline-offset: 3px; }
+
+  .link-underline{ position:relative; }
+  .link-underline::after{
+    content:''; position:absolute; left:0; right:100%; bottom:-2px; height:1px; background:currentColor;
+    transition: right .3s cubic-bezier(.16,1,.3,1);
+  }
+  .link-underline:hover::after{ right:0; }
+
+  .noise{
+    position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .radial-gold{
+    background:
+      radial-gradient(60% 50% at 50% 0%, rgba(209,164,90,.16), transparent 70%),
+      radial-gradient(40% 35% at 85% 15%, rgba(255,242,158,.06), transparent 70%),
+      #0a0a0a;
+  }
+  .card-hover{ transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s cubic-bezier(.16,1,.3,1); }
+  .card-hover:hover{ transform: translateY(-4px); }
+
+  .step-dot{
+    width:2.75rem;height:2.75rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;
+    font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.1rem;
+    background:#151312; color:#D1A45A; border:1px solid rgba(209,164,90,.35);
+  }
+  .fade-line{ background: linear-gradient(90deg, transparent, rgba(209,164,90,.4), transparent); height:1px; }
+
+  input[type="text"]::placeholder{ color:#A0A0A0; }
+</style>
+</head>
+<body class="bg-onyx text-negro">
+
+<!-- NAV -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 group">
+      <img src="assets/logo-mark.png" alt="Picarello" class="h-9 w-9 rounded-full object-cover">
+      <span class="font-display text-xl text-offwhite tracking-wide">PICARELLO</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm tracked uppercase text-gris-300">
+      <a href="#services" class="link-underline hover:text-offwhite transition-colors">Services</a>
+      <a href="#coaching-explainer" class="link-underline hover:text-offwhite transition-colors">Coaching</a>
+      <a href="#journey" class="link-underline hover:text-offwhite transition-colors">Journey</a>
+      <a href="#testimonials" class="link-underline hover:text-offwhite transition-colors">Testimonials</a>
+      <a href="#certifications" class="link-underline hover:text-offwhite transition-colors">Certifications</a>
+    </nav>
+    <button type="button" onclick="openConsultModal()" class="btn-primary rounded-full px-6 py-2.5 text-sm font-semibold tracked uppercase">Book a Consultation</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="relative radial-gold pt-40 pb-28 px-6 overflow-hidden">
+  <div class="noise"></div>
+  <div class="max-w-4xl mx-auto text-center relative">
+    <p class="tracked uppercase text-xs text-gold/80 mb-6">CSCS &middot; NSCA-CPT &middot; NBC-HWC Certified</p>
+    <h1 class="font-display text-offwhite leading-[1.05] tracking-tight" style="font-size:var(--step-6)">
+      Build the body and the<br class="hidden sm:block"> habits that last.
+    </h1>
+    <p class="mt-7 text-gris-300 max-w-xl mx-auto leading-relaxed" style="font-size:var(--step-1)">
+      One certified coach. Two disciplines. Personal training and health &amp; wellness coaching, working together to support the whole you.
+    </p>
+    <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
+      <button type="button" onclick="openConsultModal()" class="btn-primary rounded-full px-8 py-3.5 text-sm font-semibold tracked uppercase">Book a Consultation</button>
+      <a href="#services" class="btn-outline rounded-full px-8 py-3.5 text-sm font-semibold tracked uppercase">See Services</a>
+    </div>
+  </div>
+  <div class="mt-20 max-w-md mx-auto relative">
+    <div class="absolute inset-0 blur-3xl bg-gold/20 rounded-full scale-75"></div>
+    <img src="assets/logo-mark.png" alt="" class="relative w-48 h-48 mx-auto rounded-full object-cover shadow-gold">
+  </div>
+</section>
+
+<!-- CERTIFICATION STRIP -->
+<section class="bg-offwhite py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="tracked uppercase text-xs text-gris-600 mb-8">Nationally certified</p>
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <span class="px-5 py-2 rounded-full border border-gris-200 text-sm tracked uppercase text-gris-600 bg-blanco">CSCS</span>
+      <span class="px-5 py-2 rounded-full border border-gris-200 text-sm tracked uppercase text-gris-600 bg-blanco">NSCA-CPT</span>
+      <span class="px-5 py-2 rounded-full border border-gris-200 text-sm tracked uppercase text-gris-600 bg-blanco">NBC-HWC</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES & PRICING -->
+<section id="services" class="bg-offwhite pb-28 px-6">
+  <div class="max-w-3xl mx-auto text-center mb-14">
+    <p class="tracked uppercase text-xs text-gris-600 mb-4">Services &amp; Pricing</p>
+    <h2 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">Two ways to work together.</h2>
+    <p class="mt-5 text-gris-600 leading-relaxed max-w-xl mx-auto">
+      Every session is a flat $80, whether you're training or coaching. Mix and match the frequency of each to build the plan that fits your life.
+    </p>
+  </div>
+  <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+    <div class="bg-blanco rounded-2xl shadow-card p-8 card-hover">
+      <p class="tracked uppercase text-xs text-gold mb-3">Personal Training</p>
+      <p class="font-display text-negro" style="font-size:var(--step-4)">$80 <span class="text-base font-sans text-gris-500 tracking-normal">/ session</span></p>
+      <p class="mt-4 text-sm text-gris-600 leading-relaxed">Hands on programming for the way you move and the goals you're chasing.</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        <span class="px-3 py-1.5 rounded-full bg-negro text-xs tracked uppercase text-gold">In Person &middot; Lakeview, Chicago</span>
+        <span class="px-3 py-1.5 rounded-full bg-negro text-xs tracked uppercase text-gold">Online</span>
+      </div>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Mobility</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Strength</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Injury Prevention</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Retirement Training</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Hypertrophy</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Endurance</span>
+      </div>
+    </div>
+    <div class="bg-blanco rounded-2xl shadow-card p-8 card-hover">
+      <p class="tracked uppercase text-xs text-gold mb-3">Health &amp; Wellness Coaching</p>
+      <p class="font-display text-negro" style="font-size:var(--step-4)">$80 <span class="text-base font-sans text-gris-500 tracking-normal">/ session</span></p>
+      <p class="mt-4 text-sm text-gris-600 leading-relaxed">Behavior change coaching for the habits that shape everything else.</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Sleep</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Nutrition</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Activity</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Digital Wellness</span>
+        <span class="px-3 py-1.5 rounded-full bg-ivory text-xs tracked uppercase text-gris-600">Hobbies &amp; More</span>
+      </div>
+      <div class="mt-6 pt-6 border-t border-gris-200">
+        <p class="text-xs tracked uppercase text-gris-500 mb-3">Addresses all 8 dimensions of wellness</p>
+        <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-gris-600">
+          <span>Physical</span>
+          <span>Emotional</span>
+          <span>Social</span>
+          <span>Intellectual</span>
+          <span>Environmental</span>
+          <span>Spiritual</span>
+          <span>Occupational</span>
+          <span>Financial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-4xl mx-auto mt-6">
+    <div class="bg-negro rounded-2xl px-8 py-6 text-center shadow-card-dark">
+      <p class="text-sm text-offwhite leading-relaxed">
+        <span class="text-gold tracked uppercase text-xs block mb-2">Mix &amp; Match</span>
+        Many clients combine both. For example, two personal training sessions and one coaching session a week. Build whatever rhythm fits your goals.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IS HEALTH & WELLNESS COACHING -->
+<section id="coaching-explainer" class="relative radial-gold py-32 px-6 overflow-hidden">
+  <div class="noise"></div>
+  <div class="max-w-3xl mx-auto relative">
+    <p class="tracked uppercase text-xs text-gold/80 mb-4 text-center">Coaching, Explained</p>
+    <h2 class="font-display text-offwhite tracking-tight text-center" style="font-size:var(--step-5)">What is health &amp; wellness coaching, exactly?</h2>
+    <blockquote class="mt-10 border-l-2 border-gold/40 pl-6 sm:pl-8">
+      <p class="text-gris-300 leading-relaxed" style="font-size:var(--step-1)">
+        &ldquo;National Board Certified Health and Wellness Coaches (NBC-HWCs) are credentialed members of the healthcare industry who serve as behavior change agents and are trained to the highest standard in the profession. As partners with clients in the behavior change process, NBC-HWCs empower, support, and guide individuals looking to enhance their well-being through self-directed, lasting changes that align with their values.&rdquo;
+      </p>
+      <footer class="mt-4 text-xs tracked uppercase text-gris-500">&mdash; National Board for Health &amp; Wellness Coaching</footer>
+    </blockquote>
+    <p class="mt-10 text-gris-400 leading-relaxed max-w-xl mx-auto text-center">
+      In practice, that means sessions built around you, not a generic checklist. We'll work through sleep, nutrition, activity, digital wellness, hobbies, and whatever else is standing between you and the life you want — and build changes you'll actually keep.
+    </p>
+  </div>
+</section>
+
+<!-- JOURNEY STEPS -->
+<section id="journey" class="bg-offwhite pb-28 pt-28 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="tracked uppercase text-xs text-gris-600 mb-4">The Process</p>
+    <h2 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">How we'll work together.</h2>
+    <div class="mt-12 overflow-x-auto">
+    <div class="flex items-start justify-center w-max mx-auto px-1">
+      <div class="flex flex-col items-center gap-3 min-w-10 sm:min-w-20 shrink-0">
+        <div class="step-dot" style="background:#1F1C1B;color:#D1A45A;border-color:#D1A45A55">01</div>
+        <span class="text-[10px] sm:text-xs tracking-[0.04em] sm:tracking-[0.14em] uppercase text-gris-600 text-center whitespace-nowrap">Discover</span>
+      </div>
+      <div class="fade-line w-1 sm:w-10 mt-[22px] shrink-0" style="background:linear-gradient(90deg,transparent,#C4C4C4,transparent)"></div>
+      <div class="flex flex-col items-center gap-3 min-w-10 sm:min-w-20 shrink-0">
+        <div class="step-dot" style="background:#1F1C1B;color:#D1A45A;border-color:#D1A45A55">02</div>
+        <span class="text-[10px] sm:text-xs tracking-[0.04em] sm:tracking-[0.14em] uppercase text-gris-600 text-center whitespace-nowrap">Explore</span>
+      </div>
+      <div class="fade-line w-1 sm:w-10 mt-[22px] shrink-0" style="background:linear-gradient(90deg,transparent,#C4C4C4,transparent)"></div>
+      <div class="flex flex-col items-center gap-3 min-w-10 sm:min-w-20 shrink-0">
+        <div class="step-dot" style="background:#1F1C1B;color:#D1A45A;border-color:#D1A45A55">03</div>
+        <span class="text-[10px] sm:text-xs tracking-[0.04em] sm:tracking-[0.14em] uppercase text-gris-600 text-center whitespace-nowrap">Co-Create</span>
+      </div>
+      <div class="fade-line w-1 sm:w-10 mt-[22px] shrink-0" style="background:linear-gradient(90deg,transparent,#C4C4C4,transparent)"></div>
+      <div class="flex flex-col items-center gap-3 min-w-10 sm:min-w-20 shrink-0">
+        <div class="step-dot" style="background:#1F1C1B;color:#D1A45A;border-color:#D1A45A55">04</div>
+        <span class="text-[10px] sm:text-xs tracking-[0.04em] sm:tracking-[0.14em] uppercase text-gris-600 text-center whitespace-nowrap">Coach/Train</span>
+      </div>
+      <div class="fade-line w-1 sm:w-10 mt-[22px] shrink-0" style="background:linear-gradient(90deg,transparent,#C4C4C4,transparent)"></div>
+      <div class="flex flex-col items-center gap-3 min-w-10 sm:min-w-20 shrink-0">
+        <div class="step-dot" style="background:#1F1C1B;color:#D1A45A;border-color:#D1A45A55">05</div>
+        <span class="text-[10px] sm:text-xs tracking-[0.04em] sm:tracking-[0.14em] uppercase text-gris-600 text-center whitespace-nowrap">Evolve</span>
+      </div>
+    </div>
+    </div>
+
+    <div class="mt-12 max-w-lg mx-auto">
+      <div class="flex items-center bg-blanco rounded-full border border-gris-200 shadow-card px-2 py-2">
+        <input id="goal-input" type="text" placeholder="What's your goal? e.g. build strength, sleep better..." class="flex-1 bg-transparent px-4 py-2 text-sm outline-none text-negro">
+        <button type="button" onclick="openConsultModal(document.getElementById('goal-input').value)" class="btn-primary rounded-full px-6 py-2.5 text-sm font-semibold tracked uppercase shrink-0">Start</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEET YOUR COACH -->
+<section id="about" class="bg-offwhite pb-28 px-6">
+  <div class="max-w-3xl mx-auto text-center mb-12">
+    <p class="tracked uppercase text-xs text-gris-600 mb-4">The Coach</p>
+    <h3 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">A quick hello, before we start.</h3>
+    <p class="mt-4 text-gris-600 leading-relaxed max-w-xl mx-auto">
+      Who I am, what I do, and why I do it, straight from me.
+    </p>
+  </div>
+  <div class="max-w-3xl mx-auto">
+    <div class="relative rounded-2xl overflow-hidden shadow-card-dark bg-negro" style="aspect-ratio:16/9">
+      <video id="intro-video" class="w-full h-full object-cover" poster="https://placehold.co/1280x720/1F1C1B/A0A0A0?text=Meet+Picarello" playsinline preload="metadata">
+        <source src="assets/about/intro.mp4" type="video/mp4">
+      </video>
+      <button type="button" onclick="playVideo('intro-video')" id="intro-video-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none"></div>
+        <div class="relative w-20 h-20 rounded-full bg-gold/90 flex items-center justify-center shadow-gold transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
+          <svg class="w-8 h-8 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </button>
+    </div>
+    <p class="mt-4 text-xs text-gris-500 text-center">
+      Drop your intro video into <code class="text-gris-600">assets/about/</code> as <code class="text-gris-600">intro.mp4</code> and it'll play automatically.
+    </p>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section class="bg-offwhite pb-28 px-6">
+  <div class="max-w-3xl mx-auto text-center mb-14">
+    <p class="tracked uppercase text-xs text-gris-600 mb-4">The Promise</p>
+    <h3 class="font-display text-negro tracking-tight" style="font-size:var(--step-4)">Three guarantees, no fine print.</h3>
+    <p class="mt-4 text-gris-600 leading-relaxed max-w-xl mx-auto">
+      Committing to your health should feel safe, not risky. Here's exactly what you can count on.
+    </p>
+  </div>
+  <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+    <div class="bg-blanco rounded-2xl shadow-card p-8 card-hover">
+      <div class="w-12 h-12 rounded-full bg-ivory flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <p class="font-display text-negro" style="font-size:var(--step-2)">The Walk Away Anytime Guarantee</p>
+      <p class="mt-3 text-sm text-gris-600 leading-relaxed">Cancel your agreement at any time. All unused sessions are refunded, no questions asked.</p>
+    </div>
+    <div class="bg-blanco rounded-2xl shadow-card p-8 card-hover">
+      <div class="w-12 h-12 rounded-full bg-ivory flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg>
+      </div>
+      <p class="font-display text-negro" style="font-size:var(--step-2)">The Life Happens Guarantee</p>
+      <p class="mt-3 text-sm text-gris-600 leading-relaxed">Travel, grandkids, surgery recovery, whatever comes up: pause your program anytime with no penalty and no lost sessions.</p>
+    </div>
+    <div class="bg-blanco rounded-2xl shadow-card p-8 card-hover">
+      <div class="w-12 h-12 rounded-full bg-ivory flex items-center justify-center mb-6">
+        <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.75" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <p class="font-display text-negro" style="font-size:var(--step-2)">The Never Static Guarantee</p>
+      <p class="mt-3 text-sm text-gris-600 leading-relaxed">Your plan gets reassessed and adjusted as you go. Never a fixed template you're stuck following when something isn't working.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DARK SECTION: VALUE PROPS -->
+<section class="relative radial-gold py-32 px-6 overflow-hidden">
+  <div class="noise"></div>
+  <div class="max-w-3xl mx-auto text-center relative">
+    <p class="tracked uppercase text-xs text-gold/80 mb-4">Why Picarello</p>
+    <h2 class="font-display text-offwhite tracking-tight" style="font-size:var(--step-5)">Personalized plans, built around you.</h2>
+    <p class="mt-5 text-gris-400 leading-relaxed max-w-xl mx-auto">
+      Built with you, not for you, and adjusted every step of the way. Never a generic template.
+    </p>
+  </div>
+  <div class="mt-20 max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 relative">
+    <div class="text-center">
+      <p class="font-display text-gold" style="font-size:var(--step-4)">Two Disciplines</p>
+      <p class="mt-2 text-sm text-gris-400">Personal training and wellness coaching from one certified coach.</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display text-gold" style="font-size:var(--step-4)">Scalable Programming</p>
+      <p class="mt-2 text-sm text-gris-400">Every program and exercise has a modification for higher or lower impact.</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display text-gold" style="font-size:var(--step-4)">Goals You Define</p>
+      <p class="mt-2 text-sm text-gris-400">You set what progress means, and every plan builds toward it.</p>
+    </div>
+    <div class="text-center">
+      <p class="font-display text-gold" style="font-size:var(--step-4)">Certified Approach</p>
+      <p class="mt-2 text-sm text-gris-400">Backed by CSCS, NSCA-CPT, and NBC-HWC training standards.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VERTICAL SHOWCASE -->
+<section class="relative bg-onyx pb-32 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="tracked uppercase text-xs text-gold/80 mb-4">Featured Specialty</p>
+      <h3 class="font-display text-offwhite tracking-tight" style="font-size:var(--step-5)">Strength &amp; Conditioning</h3>
+      <p class="mt-5 text-gris-400 leading-relaxed max-w-md">
+        Built around your squat, your recovery, and your timeline, periodized using CSCS certified methods, whether you're chasing a new PR or training safely into retirement.
+      </p>
+      <button type="button" onclick="openConsultModal()" class="mt-8 inline-flex items-center gap-2 text-gold text-sm tracked uppercase link-underline bg-transparent border-0 p-0 cursor-pointer">Book a consultation &rarr;</button>
+    </div>
+    <div class="relative">
+      <div class="absolute inset-0 blur-3xl bg-gold/10 rounded-full"></div>
+      <div class="relative bg-charcoal rounded-t-xl border border-white/5 shadow-card-dark overflow-hidden">
+        <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5">
+          <span class="w-2.5 h-2.5 rounded-full bg-gris-600"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-gris-600"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-gris-600"></span>
+        </div>
+        <div class="p-6 bg-ivory text-negro">
+          <p class="font-display text-lg mb-1">Block 3 — Strength Phase</p>
+          <p class="text-xs text-gris-600 mb-4">Week 5 of 8 &middot; Tony P.</p>
+          <div class="space-y-2">
+            <div class="flex justify-between text-sm border-b border-gris-200 pb-2"><span>Back Squat</span><span class="text-gris-600">5x3 @ 82%</span></div>
+            <div class="flex justify-between text-sm border-b border-gris-200 pb-2"><span>Romanian Deadlift</span><span class="text-gris-600">4x6 @ 70%</span></div>
+            <div class="flex justify-between text-sm"><span>Weighted Pullup</span><span class="text-gris-600">4x5</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="h-4 bg-gris-300 rounded-b-sm mx-8"></div>
+      <div class="h-2 bg-gris-400 rounded-b-md mx-16"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="bg-offwhite py-28 px-6">
+  <div class="max-w-3xl mx-auto text-center mb-14">
+    <p class="tracked uppercase text-xs text-gris-600 mb-4">Client Stories</p>
+    <h2 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">Hear it from clients.</h2>
+    <p class="mt-5 text-gris-600 leading-relaxed max-w-xl mx-auto">Video testimonials from real Picarello clients, coming soon.</p>
+  </div>
+  <div class="max-w-4xl mx-auto grid sm:grid-cols-3 gap-6">
+    <div class="card-hover">
+      <div class="relative rounded-2xl overflow-hidden shadow-card bg-negro" style="aspect-ratio:9/16">
+        <video id="testimonial-1" class="w-full h-full object-cover" poster="https://placehold.co/400x711/1F1C1B/A0A0A0?text=Client+1" playsinline preload="metadata">
+          <source src="assets/testimonials/client-1.mp4" type="video/mp4">
+        </video>
+        <button type="button" onclick="playVideo('testimonial-1')" id="testimonial-1-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+          <div class="relative w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center shadow-gold transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
+            <svg class="w-6 h-6 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
+            <p class="text-offwhite text-sm font-semibold">Client Name</p>
+            <p class="text-gris-300 text-xs tracked uppercase mt-1">Personal Training</p>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="card-hover">
+      <div class="relative rounded-2xl overflow-hidden shadow-card bg-negro" style="aspect-ratio:9/16">
+        <video id="testimonial-2" class="w-full h-full object-cover" poster="https://placehold.co/400x711/1F1C1B/A0A0A0?text=Client+2" playsinline preload="metadata">
+          <source src="assets/testimonials/client-2.mp4" type="video/mp4">
+        </video>
+        <button type="button" onclick="playVideo('testimonial-2')" id="testimonial-2-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+          <div class="relative w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center shadow-gold transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
+            <svg class="w-6 h-6 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
+            <p class="text-offwhite text-sm font-semibold">Client Name</p>
+            <p class="text-gris-300 text-xs tracked uppercase mt-1">Health &amp; Wellness Coaching</p>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="card-hover">
+      <div class="relative rounded-2xl overflow-hidden shadow-card bg-negro" style="aspect-ratio:9/16">
+        <video id="testimonial-3" class="w-full h-full object-cover" poster="https://placehold.co/400x711/1F1C1B/A0A0A0?text=Client+3" playsinline preload="metadata">
+          <source src="assets/testimonials/client-3.mp4" type="video/mp4">
+        </video>
+        <button type="button" onclick="playVideo('testimonial-3')" id="testimonial-3-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none"></div>
+          <div class="relative w-16 h-16 rounded-full bg-gold/90 flex items-center justify-center shadow-gold transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
+            <svg class="w-6 h-6 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
+            <p class="text-offwhite text-sm font-semibold">Client Name</p>
+            <p class="text-gris-300 text-xs tracked uppercase mt-1">Personal Training &amp; Coaching</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <p class="max-w-4xl mx-auto mt-6 text-xs text-gris-500 text-center">
+    Drop finished videos into <code class="text-gris-600">assets/testimonials/</code> as <code class="text-gris-600">client-1.mp4</code>, <code class="text-gris-600">client-2.mp4</code>, <code class="text-gris-600">client-3.mp4</code> and they'll play automatically.
+  </p>
+</section>
+
+<!-- CERTIFICATIONS DETAIL -->
+<section id="certifications" class="relative bg-onyx py-32 px-6 overflow-hidden">
+  <div class="noise"></div>
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative">
+    <div>
+      <img src="assets/logo-mark.png" alt="Picarello mark" class="w-40 h-40 rounded-full object-cover shadow-gold">
+    </div>
+    <div>
+      <h3 class="font-display text-offwhite tracking-tight" style="font-size:var(--step-5)">Certified at every level.</h3>
+      <p class="mt-5 text-gris-400 leading-relaxed max-w-md">Programming and coaching backed by three national certifications.</p>
+      <div class="mt-8 space-y-6">
+        <div>
+          <p class="text-gold text-sm tracked uppercase mb-1">CSCS &mdash; Certified Strength and Conditioning Specialist</p>
+          <p class="text-gris-400 text-sm">The gold standard for strength coaches, from the National Strength and Conditioning Association.</p>
+        </div>
+        <div>
+          <p class="text-gold text-sm tracked uppercase mb-1">NSCA-CPT &mdash; Certified Personal Trainer</p>
+          <p class="text-gris-400 text-sm">Personal training rooted in exercise science and safe, progressive coaching.</p>
+        </div>
+        <div>
+          <p class="text-gold text-sm tracked uppercase mb-1">NBC-HWC &mdash; National Board Certified Health &amp; Wellness Coach</p>
+          <p class="text-gris-400 text-sm">Credentialed through the National Board for Health &amp; Wellness Coaching to guide lasting behavior change that aligns with your values.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="book" class="bg-negro py-16 px-6 border-t border-white/5">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo-mark.png" alt="Picarello" class="h-10 w-10 rounded-full object-cover">
+      <div>
+        <p class="font-display text-offwhite text-lg leading-tight">PICARELLO</p>
+        <p class="text-xs tracked uppercase text-gris-500">Training and Coaching</p>
+      </div>
+    </div>
+    <button type="button" onclick="openConsultModal()" class="btn-primary rounded-full px-8 py-3.5 text-sm font-semibold tracked uppercase">Book a Consultation</button>
+  </div>
+  <div class="max-w-6xl mx-auto mt-10 pt-8 border-t border-white/5 text-xs text-gris-600 flex flex-col sm:flex-row justify-between gap-2">
+    <span>&copy; 2026 Picarello Training and Coaching. All rights reserved.</span>
+    <span>Made with intention.</span>
+  </div>
+</footer>
+
+<!-- CONSULTATION MODAL -->
+<div id="consult-modal" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeConsultModal()"></div>
+  <div class="relative min-h-full flex items-center justify-center p-6">
+    <div role="dialog" aria-modal="true" aria-labelledby="consult-modal-title" class="relative bg-offwhite rounded-2xl shadow-gold max-w-md w-full p-8">
+      <button type="button" onclick="closeConsultModal()" aria-label="Close" class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-gris-500 hover:text-negro hover:bg-gris-200 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <p id="consult-modal-title" class="font-display text-negro" style="font-size:var(--step-4)">Book a Consultation</p>
+      <p class="mt-2 text-sm text-gris-600 leading-relaxed">Share a few details and I'll follow up to find your first session time.</p>
+      <form id="consult-form" class="mt-6 space-y-4" onsubmit="return submitConsultForm(event)">
+        <div>
+          <label for="consult-name" class="block text-xs tracked uppercase text-gris-600 mb-1.5">Name</label>
+          <input id="consult-name" type="text" required class="w-full rounded-xl border border-gris-200 bg-blanco px-4 py-2.5 text-sm text-negro outline-none focus:border-gold transition-colors">
+        </div>
+        <div>
+          <label for="consult-phone" class="block text-xs tracked uppercase text-gris-600 mb-1.5">Phone Number</label>
+          <input id="consult-phone" type="tel" required class="w-full rounded-xl border border-gris-200 bg-blanco px-4 py-2.5 text-sm text-negro outline-none focus:border-gold transition-colors">
+        </div>
+        <div>
+          <label for="consult-email" class="block text-xs tracked uppercase text-gris-600 mb-1.5">Email</label>
+          <input id="consult-email" type="email" required class="w-full rounded-xl border border-gris-200 bg-blanco px-4 py-2.5 text-sm text-negro outline-none focus:border-gold transition-colors">
+        </div>
+        <div>
+          <label for="consult-reason" class="block text-xs tracked uppercase text-gris-600 mb-1.5">Why do you want to start training or coaching?</label>
+          <textarea id="consult-reason" rows="3" required class="w-full rounded-xl border border-gris-200 bg-blanco px-4 py-2.5 text-sm text-negro outline-none focus:border-gold transition-colors resize-none"></textarea>
+        </div>
+        <button type="submit" class="btn-primary rounded-full w-full py-3.5 text-sm font-semibold tracked uppercase">Send Request</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function playVideo(id) {
+    const video = document.getElementById(id);
+    const overlay = document.getElementById(id + '-overlay');
+    overlay.style.display = 'none';
+    video.setAttribute('controls', 'controls');
+    video.play();
+  }
+
+  function openConsultModal(prefillReason) {
+    document.getElementById('consult-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    if (prefillReason) {
+      document.getElementById('consult-reason').value = prefillReason;
+    }
+    document.getElementById('consult-name').focus();
+  }
+
+  function closeConsultModal() {
+    document.getElementById('consult-modal').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeConsultModal();
+  });
+
+  function submitConsultForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('consult-name').value.trim();
+    const phone = document.getElementById('consult-phone').value.trim();
+    const email = document.getElementById('consult-email').value.trim();
+    const reason = document.getElementById('consult-reason').value.trim();
+
+    const subject = 'Consultation Request from ' + name;
+    const body = 'Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\n\nWhy they want to start:\n' + reason;
+    window.location.href = 'mailto:picarellotraining@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+    closeConsultModal();
+    document.getElementById('consult-form').reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>

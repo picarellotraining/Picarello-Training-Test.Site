@@ -1,0 +1,6 @@
+node_modules/
+temporary screenshots/
+.claude/
+prolibu.com_en_platform_sales_.png
+npm-debug.log*
+.DS_Store

@@ -158,6 +158,27 @@
   </div>
 </section>
 
+<!-- MEET YOUR COACH -->
+<section id="about" class="bg-offwhite pt-20 pb-8 px-6">
+  <div class="max-w-3xl mx-auto text-center mb-12">
+    <p class="tracked uppercase text-xs text-gris-600 mb-4">The Coach</p>
+    <h3 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">A quick hello, before we start.</h3>
+  </div>
+  <div class="max-w-3xl mx-auto">
+    <div class="relative rounded-2xl overflow-hidden shadow-card-dark bg-negro" style="aspect-ratio:16/9">
+      <video id="intro-video" class="w-full h-full object-cover" poster="assets/about/intro-poster.jpg" playsinline preload="metadata" disablePictureInPicture controlsList="nodownload noremoteplayback noplaybackrate" oncontextmenu="return false">
+        <source src="assets/about/intro.mp4" type="video/mp4">
+      </video>
+      <button type="button" onclick="playVideo('intro-video')" id="intro-video-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none"></div>
+        <div class="relative w-20 h-20 rounded-full bg-gold/90 flex items-center justify-center shadow-gold transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
+          <svg class="w-8 h-8 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- CERTIFICATION STRIP -->
 <section class="bg-offwhite py-20 px-6">
   <div class="max-w-6xl mx-auto text-center">
@@ -294,33 +315,6 @@
   </div>
 </section>
 
-<!-- MEET YOUR COACH -->
-<section id="about" class="bg-offwhite pb-28 px-6">
-  <div class="max-w-3xl mx-auto text-center mb-12">
-    <p class="tracked uppercase text-xs text-gris-600 mb-4">The Coach</p>
-    <h3 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">A quick hello, before we start.</h3>
-    <p class="mt-4 text-gris-600 leading-relaxed max-w-xl mx-auto">
-      Who I am, what I do, and why I do it, straight from me.
-    </p>
-  </div>
-  <div class="max-w-3xl mx-auto">
-    <div class="relative rounded-2xl overflow-hidden shadow-card-dark bg-negro" style="aspect-ratio:16/9">
-      <video id="intro-video" class="w-full h-full object-cover" poster="https://placehold.co/1280x720/1F1C1B/A0A0A0?text=Meet+Picarello" playsinline preload="metadata">
-        <source src="assets/about/intro.mp4" type="video/mp4">
-      </video>
-      <button type="button" onclick="playVideo('intro-video')" id="intro-video-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none"></div>
-        <div class="relative w-20 h-20 rounded-full bg-gold/90 flex items-center justify-center shadow-gold transition-transform duration-300 group-hover:scale-110 group-active:scale-95">
-          <svg class="w-8 h-8 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </button>
-    </div>
-    <p class="mt-4 text-xs text-gris-500 text-center">
-      Drop your intro video into <code class="text-gris-600">assets/about/</code> as <code class="text-gris-600">intro.mp4</code> and it'll play automatically.
-    </p>
-  </div>
-</section>
-
 <!-- GUARANTEES -->
 <section class="bg-offwhite pb-28 px-6">
   <div class="max-w-3xl mx-auto text-center mb-14">
@@ -425,12 +419,12 @@
   <div class="max-w-3xl mx-auto text-center mb-14">
     <p class="tracked uppercase text-xs text-gris-600 mb-4">Client Stories</p>
     <h2 class="font-display text-negro tracking-tight" style="font-size:var(--step-5)">Hear it from clients.</h2>
-    <p class="mt-5 text-gris-600 leading-relaxed max-w-xl mx-auto">Video testimonials from real Picarello clients, coming soon.</p>
+    <p class="mt-5 text-gris-600 leading-relaxed max-w-xl mx-auto">Real clients, in their own words.</p>
   </div>
   <div class="max-w-4xl mx-auto grid sm:grid-cols-3 gap-6">
     <div class="card-hover">
       <div class="relative rounded-2xl overflow-hidden shadow-card bg-negro" style="aspect-ratio:9/16">
-        <video id="testimonial-1" class="w-full h-full object-cover" poster="https://placehold.co/400x711/1F1C1B/A0A0A0?text=Client+1" playsinline preload="metadata">
+        <video id="testimonial-1" class="w-full h-full object-cover" poster="assets/testimonials/client-1-poster.jpg" playsinline preload="metadata" disablePictureInPicture controlsList="nodownload noremoteplayback noplaybackrate" oncontextmenu="return false">
           <source src="assets/testimonials/client-1.mp4" type="video/mp4">
         </video>
         <button type="button" onclick="playVideo('testimonial-1')" id="testimonial-1-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
@@ -439,15 +433,14 @@
             <svg class="w-6 h-6 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
           <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
-            <p class="text-offwhite text-sm font-semibold">Client Name</p>
-            <p class="text-gris-300 text-xs tracked uppercase mt-1">Personal Training</p>
+            <p class="text-offwhite text-sm font-semibold">Chris</p>
           </div>
         </button>
       </div>
     </div>
     <div class="card-hover">
       <div class="relative rounded-2xl overflow-hidden shadow-card bg-negro" style="aspect-ratio:9/16">
-        <video id="testimonial-2" class="w-full h-full object-cover" poster="https://placehold.co/400x711/1F1C1B/A0A0A0?text=Client+2" playsinline preload="metadata">
+        <video id="testimonial-2" class="w-full h-full object-cover" poster="assets/testimonials/client-2-poster.jpg" playsinline preload="metadata" disablePictureInPicture controlsList="nodownload noremoteplayback noplaybackrate" oncontextmenu="return false">
           <source src="assets/testimonials/client-2.mp4" type="video/mp4">
         </video>
         <button type="button" onclick="playVideo('testimonial-2')" id="testimonial-2-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
@@ -456,15 +449,14 @@
             <svg class="w-6 h-6 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
           <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
-            <p class="text-offwhite text-sm font-semibold">Client Name</p>
-            <p class="text-gris-300 text-xs tracked uppercase mt-1">Health &amp; Wellness Coaching</p>
+            <p class="text-offwhite text-sm font-semibold">Nicole</p>
           </div>
         </button>
       </div>
     </div>
     <div class="card-hover">
       <div class="relative rounded-2xl overflow-hidden shadow-card bg-negro" style="aspect-ratio:9/16">
-        <video id="testimonial-3" class="w-full h-full object-cover" poster="https://placehold.co/400x711/1F1C1B/A0A0A0?text=Client+3" playsinline preload="metadata">
+        <video id="testimonial-3" class="w-full h-full object-cover" poster="assets/testimonials/client-3-poster.jpg" playsinline preload="metadata" disablePictureInPicture controlsList="nodownload noremoteplayback noplaybackrate" oncontextmenu="return false">
           <source src="assets/testimonials/client-3.mp4" type="video/mp4">
         </video>
         <button type="button" onclick="playVideo('testimonial-3')" id="testimonial-3-overlay" class="absolute inset-0 w-full flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2 group">
@@ -473,16 +465,12 @@
             <svg class="w-6 h-6 text-negro ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
           <div class="absolute bottom-4 left-4 right-4 text-left pointer-events-none">
-            <p class="text-offwhite text-sm font-semibold">Client Name</p>
-            <p class="text-gris-300 text-xs tracked uppercase mt-1">Personal Training &amp; Coaching</p>
+            <p class="text-offwhite text-sm font-semibold">Roger Austin</p>
           </div>
         </button>
       </div>
     </div>
   </div>
-  <p class="max-w-4xl mx-auto mt-6 text-xs text-gris-500 text-center">
-    Drop finished videos into <code class="text-gris-600">assets/testimonials/</code> as <code class="text-gris-600">client-1.mp4</code>, <code class="text-gris-600">client-2.mp4</code>, <code class="text-gris-600">client-3.mp4</code> and they'll play automatically.
-  </p>
 </section>
 
 <!-- CERTIFICATIONS DETAIL -->
